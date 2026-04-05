@@ -15,6 +15,7 @@ class App(ctk.CTk):
         super().__init__()
         self.title("My Book List")
         self.geometry("1200x800")
+        self.after(0, lambda: self.state("zoomed"))
         self.minsize(800, 500)
 
         self.temas = {
