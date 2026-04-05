@@ -9,27 +9,34 @@ O diferencial deste projeto é a interface gráfica dinâmica com sistema de **t
 
 ---
 
+## 📸 Demonstração do App
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/d7d6162e-022d-4089-a960-0be49169c4c1" alt="Demonstração do MyBookList" width="1000" style="border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+</p>
+
+---
+
 ## 📸 Interface do Aplicativo
 <h2 align="center">🎨 Temas Disponíveis</h2>
 
 <table align="center">
   <tr>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/bf0e63ba-acd9-48dd-9122-0ceda2018abf" width="350px"/><br/>
+      <img src="https://github.com/user-attachments/assets/bf0e63ba-acd9-48dd-9122-0ceda2018abf" width="480px"/><br/>
       <b>Tema Dracula</b>
     </td>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/320002d1-90a8-4a66-88b1-692ceb812850" width="350px"/><br/>
+      <img src="https://github.com/user-attachments/assets/320002d1-90a8-4a66-88b1-692ceb812850" width="480px"/><br/>
       <b>Tema Cyberpunk</b>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/ca3e94a2-7470-4860-86d5-40a526c2db55" width="350px"/><br/>
+      <img src="https://github.com/user-attachments/assets/ca3e94a2-7470-4860-86d5-40a526c2db55" width="480px"/><br/>
       <b>Tema Cafe-Expresso</b>
     </td>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/e1457a32-c27f-4ab3-b6d2-f45b2b518117" width="350px"/><br/>
+      <img src="https://github.com/user-attachments/assets/e1457a32-c27f-4ab3-b6d2-f45b2b518117" width="480px"/><br/>
       <b>Tema Ocean-Night</b>
     </td>
   </tr>
