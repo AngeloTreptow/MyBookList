@@ -193,7 +193,7 @@ class App(ctk.CTk):
         link_github.pack(pady=10)
 
         import webbrowser
-        link_github.bind("<Button-1>", lambda e: webbrowser.open_new("https://github.com/AngeloTreptow"))
+        link_github.bind("<Button-1>", lambda e: webbrowser.open_new("https://github.com/AngeloTreptow/MyBookList"))
 
     def construir_menu_direito(self):
         # ← Guardando referência de busca e aplicando a cor fixa em vez de transparent
