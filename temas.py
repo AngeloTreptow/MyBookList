@@ -1,0 +1,38 @@
+TEMAS = {
+    "Dracula": {
+        "menu_esquerdo":       "#21222C",
+        "fundo_direito":       "#282A36",
+        "card_livro":          "#44475A",
+        "texto_secundario":    "#6272A4",
+        "texto_destaque":      "#FF79C6",
+        "botao_remover":       "#FF5555",
+        "botao_remover_hover": "#FF6E6E",
+    },
+    "Cyberpunk": {
+        "menu_esquerdo":       "#0D0D0D",
+        "fundo_direito":       "#000000",
+        "card_livro":          "#1A1A24",
+        "texto_secundario":    "#A6A6A6",
+        "texto_destaque":      "#00FFCC",
+        "botao_remover":       "#FF0055",
+        "botao_remover_hover": "#CC0044",
+    },
+    "Café Expresso": {
+        "menu_esquerdo":       "#2C221E",
+        "fundo_direito":       "#1F1815",
+        "card_livro":          "#3A2F2B",
+        "texto_secundario":    "#BCAAA4",
+        "texto_destaque":      "#FFB300",
+        "botao_remover":       "#D84315",
+        "botao_remover_hover": "#BF360C",
+    },
+    "Ocean Night": {
+        "menu_esquerdo":       "#0F172A",
+        "fundo_direito":       "#020617",
+        "card_livro":          "#1E293B",
+        "texto_secundario":    "#94A3B8",
+        "texto_destaque":      "#38BDF8",
+        "botao_remover":       "#E11D48",
+        "botao_remover_hover": "#BE123C",
+    },
+}

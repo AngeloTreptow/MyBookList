@@ -4,3 +4,4 @@ __pycache__/
 *.spec
 livros.json
 config_tema.json
+.idea/
