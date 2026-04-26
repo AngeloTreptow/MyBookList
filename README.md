@@ -23,7 +23,7 @@ O diferencial deste projeto é a interface gráfica dinâmica com sistema de **t
   <tr>
     <td align="center">
       <img src="https://github.com/user-attachments/assets/bf0e63ba-acd9-48dd-9122-0ceda2018abf" width="480px"/><br/>
-      <b>Tema Dracula</b>
+      <b>Tema Dracula (baseado)</b>
     </td>
     <td align="center">
       <img src="https://github.com/user-attachments/assets/320002d1-90a8-4a66-88b1-692ceb812850" width="480px"/><br/>
@@ -33,16 +33,18 @@ O diferencial deste projeto é a interface gráfica dinâmica com sistema de **t
   <tr>
     <td align="center">
       <img src="https://github.com/user-attachments/assets/ca3e94a2-7470-4860-86d5-40a526c2db55" width="480px"/><br/>
-      <b>Tema Cafe-Expresso</b>
+      <b>Tema Café Expresso</b>
     </td>
     <td align="center">
       <img src="https://github.com/user-attachments/assets/e1457a32-c27f-4ab3-b6d2-f45b2b518117" width="480px"/><br/>
-      <b>Tema Ocean-Night</b>
+      <b>Tema Ocean Night</b>
     </td>
   </tr>
 </table>
 
-> *As imagens utilizadas nas capturas de tela são apenas para fins demonstrativos e pertencem aos seus respectivos detentores de direitos autorais.*
+> *As imagens exibidas são apenas ilustrativas e pertencem aos seus respectivos autores.*
+>
+> *O tema "Dracula" é baseado na paleta oficial do Dracula Theme (licença MIT).*
 
 ---
 
