@@ -25,7 +25,7 @@ class GerenciadorLivros:
         self._carregar()
 
     # Interface pública
-    def cadastrar_livro(self, titulo: str, autor: str, capitulo: int, capa: str = None) -> dict:
+    def cadastrar_livro(self, titulo: str, autor: str, capitulo: int, capa: str | None = None) -> dict:
         if not titulo or not autor:
             raise ValueError("Título e autor são obrigatórios.")
 
@@ -62,7 +62,7 @@ class GerenciadorLivros:
             titulo: str,
             autor: str,
             capitulo: int,
-            nova_capa: str = None,
+            nova_capa: str | None = None,
     ) -> bool:
         livro = self.buscar_por_id(id_livro)
         if not livro:
@@ -75,7 +75,10 @@ class GerenciadorLivros:
         if nova_capa and nova_capa != livro["capa"]:
             capa_antiga = livro["capa"]
             livro["capa"] = self._resolver_capa(nova_capa, id_livro)
-            self._remover_capa_personalizada(capa_antiga)
+            # A nova capa pode ter sido copiada sobre o mesmo caminho da antiga
+            # (mesma extensão); nesse caso não há arquivo antigo a remover.
+            if capa_antiga != livro["capa"]:
+                self._remover_capa_personalizada(capa_antiga)
 
         self._salvar()
         return True
