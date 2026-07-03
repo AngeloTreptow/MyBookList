@@ -2,7 +2,7 @@
 
 import json
 
-from temas import TEMAS
+from mybooklist.config.temas import TEMAS
 
 ARQUIVO_CONFIG_TEMA = "config_tema.json"
 TEMA_PADRAO = "Ocean Night"

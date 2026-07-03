@@ -2,7 +2,7 @@
 
 import customtkinter as ctk
 
-from app import App
+from mybooklist.app import App
 
 
 def main():

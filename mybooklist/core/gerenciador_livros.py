@@ -112,7 +112,11 @@ class GerenciadorLivros:
             print(f"Aviso: não foi possível copiar a capa padrão – {erro}")
 
     def _encontrar_capa_padrao_original(self) -> str | None:
-        dir_script = os.path.dirname(os.path.abspath(__file__))
+        # A raiz do projeto fica três níveis acima deste módulo
+        # (mybooklist/core/gerenciador_livros.py).
+        dir_raiz = os.path.dirname(
+            os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        )
 
         candidatos = []
 
@@ -121,8 +125,8 @@ class GerenciadorLivros:
             candidatos.append(os.path.join(meipass, "capas", NOME_CAPA_PADRAO))
 
         candidatos += [
-            os.path.join(dir_script, "capas", NOME_CAPA_PADRAO),
-            os.path.join(dir_script, NOME_CAPA_PADRAO),
+            os.path.join(dir_raiz, "capas", NOME_CAPA_PADRAO),
+            os.path.join(dir_raiz, NOME_CAPA_PADRAO),
         ]
 
         return next((c for c in candidatos if os.path.exists(c)), None)

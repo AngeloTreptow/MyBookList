@@ -5,7 +5,7 @@ from typing import Callable
 
 import customtkinter as ctk
 
-from imagens import criar_imagem_ctk
+from mybooklist.ui.imagens import criar_imagem_ctk
 
 COR_BOTAO_EDITAR = "#2563eb"
 TAMANHO_CAPA_CARD = (80, 120)
