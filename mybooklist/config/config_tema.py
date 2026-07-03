@@ -1,10 +1,13 @@
 """Persistência da preferência de tema do usuário."""
 
 import json
+import os
 
+from mybooklist.caminhos import dir_base
 from mybooklist.config.temas import TEMAS
 
-ARQUIVO_CONFIG_TEMA = "config_tema.json"
+# Ancorado no diretório base da aplicação, independente do CWD.
+ARQUIVO_CONFIG_TEMA = os.path.join(dir_base(), "config_tema.json")
 TEMA_PADRAO = "Ocean Night"
 
 

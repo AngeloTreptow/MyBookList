@@ -3,19 +3,24 @@ import os
 import shutil
 import sys
 
+from mybooklist.caminhos import dir_base
+
 NOME_CAPA_PADRAO = "padrao.png"
 NOME_ARQUIVO_DADOS = "livros.json"
+NOME_DIR_CAPAS = "capas"
 
 
 class GerenciadorLivros:
 
     def __init__(
             self,
-            arquivo_dados: str = NOME_ARQUIVO_DADOS,
-            dir_capas: str = "capas",
+            arquivo_dados: str | None = None,
+            dir_capas: str | None = None,
     ):
-        self.arquivo_dados = arquivo_dados
-        self.dir_capas = dir_capas
+        # Caminhos padrão ancorados no diretório base da aplicação, para que
+        # os dados não mudem conforme o diretório de onde o programa é iniciado.
+        self.arquivo_dados = arquivo_dados or os.path.join(dir_base(), NOME_ARQUIVO_DADOS)
+        self.dir_capas = dir_capas or os.path.join(dir_base(), NOME_DIR_CAPAS)
         self.capa_padrao = os.path.join(self.dir_capas, NOME_CAPA_PADRAO)
 
         self.livros: list[dict] = []
@@ -45,7 +50,9 @@ class GerenciadorLivros:
         return livro
 
     def listar_livros(self) -> list[dict]:
-        return self.livros
+        # Cópia da lista para que quem chama não altere o estado interno
+        # sem passar pelos métodos que persistem em disco.
+        return list(self.livros)
 
     def buscar_por_id(self, id_livro: int) -> dict | None:
         return next((livro for livro in self.livros if livro["id"] == id_livro), None)
@@ -112,20 +119,16 @@ class GerenciadorLivros:
             print(f"Aviso: não foi possível copiar a capa padrão – {erro}")
 
     def _encontrar_capa_padrao_original(self) -> str | None:
-        # A raiz do projeto fica três níveis acima deste módulo
-        # (mybooklist/core/gerenciador_livros.py).
-        dir_raiz = os.path.dirname(
-            os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        )
+        dir_raiz = dir_base()
 
         candidatos = []
 
         meipass = getattr(sys, "_MEIPASS", None)
         if meipass:
-            candidatos.append(os.path.join(meipass, "capas", NOME_CAPA_PADRAO))
+            candidatos.append(os.path.join(meipass, NOME_DIR_CAPAS, NOME_CAPA_PADRAO))
 
         candidatos += [
-            os.path.join(dir_raiz, "capas", NOME_CAPA_PADRAO),
+            os.path.join(dir_raiz, NOME_DIR_CAPAS, NOME_CAPA_PADRAO),
             os.path.join(dir_raiz, NOME_CAPA_PADRAO),
         ]
 
