@@ -7,3 +7,4 @@ config_tema.json
 .idea/
 desktop.ini
 .pytest_cache/
+*.egg-info/

@@ -2,15 +2,15 @@
 
 import os
 import webbrowser
+from tkinter import TclError, filedialog, messagebox
 
-from tkinter import filedialog, messagebox, TclError
 import customtkinter as ctk
 
-from mybooklist.ui.card_livro import CardLivro
 from mybooklist.config.config_tema import carregar_tema_salvo, salvar_tema
-from mybooklist.core.gerenciador_livros import GerenciadorLivros
-from mybooklist.ui.imagens import criar_imagem_ctk
 from mybooklist.config.temas import TEMAS
+from mybooklist.core.gerenciador_livros import GerenciadorLivros
+from mybooklist.ui.card_livro import CardLivro
+from mybooklist.ui.imagens import criar_imagem_ctk
 
 TAMANHO_CAPA_PREVIA = (120, 180)
 URL_REPOSITORIO = "https://github.com/AngeloTreptow/MyBookList"
