@@ -62,6 +62,8 @@ O MyBookList não tem um tema: ele tem **quatro personalidades**. Cada uma foi p
 </div>
 
 > *As imagens utilizadas nas capturas de tela são apenas para fins demonstrativos e pertencem aos seus respectivos detentores de direitos autorais.*
+>
+> *O tema "Dracula" é baseado na paleta oficial do [Dracula Theme](https://draculatheme.com) (licença MIT).*
 
 ---
 
