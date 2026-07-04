@@ -3,19 +3,24 @@ import os
 import shutil
 import sys
 
+from mybooklist.caminhos import dir_base
+
 NOME_CAPA_PADRAO = "padrao.png"
 NOME_ARQUIVO_DADOS = "livros.json"
+NOME_DIR_CAPAS = "capas"
 
 
 class GerenciadorLivros:
 
     def __init__(
             self,
-            arquivo_dados: str = NOME_ARQUIVO_DADOS,
-            dir_capas: str = "capas",
+            arquivo_dados: str | None = None,
+            dir_capas: str | None = None,
     ):
-        self.arquivo_dados = arquivo_dados
-        self.dir_capas = dir_capas
+        # Caminhos padrão ancorados no diretório base da aplicação, para que
+        # os dados não mudem conforme o diretório de onde o programa é iniciado.
+        self.arquivo_dados = arquivo_dados or os.path.join(dir_base(), NOME_ARQUIVO_DADOS)
+        self.dir_capas = dir_capas or os.path.join(dir_base(), NOME_DIR_CAPAS)
         self.capa_padrao = os.path.join(self.dir_capas, NOME_CAPA_PADRAO)
 
         self.livros: list[dict] = []
@@ -25,7 +30,7 @@ class GerenciadorLivros:
         self._carregar()
 
     # Interface pública
-    def cadastrar_livro(self, titulo: str, autor: str, capitulo: int, capa: str = None) -> dict:
+    def cadastrar_livro(self, titulo: str, autor: str, capitulo: int, capa: str | None = None) -> dict:
         if not titulo or not autor:
             raise ValueError("Título e autor são obrigatórios.")
 
@@ -45,7 +50,9 @@ class GerenciadorLivros:
         return livro
 
     def listar_livros(self) -> list[dict]:
-        return self.livros
+        # Cópia da lista para que quem chama não altere o estado interno
+        # sem passar pelos métodos que persistem em disco.
+        return list(self.livros)
 
     def buscar_por_id(self, id_livro: int) -> dict | None:
         return next((livro for livro in self.livros if livro["id"] == id_livro), None)
@@ -62,7 +69,7 @@ class GerenciadorLivros:
             titulo: str,
             autor: str,
             capitulo: int,
-            nova_capa: str = None,
+            nova_capa: str | None = None,
     ) -> bool:
         livro = self.buscar_por_id(id_livro)
         if not livro:
@@ -75,7 +82,10 @@ class GerenciadorLivros:
         if nova_capa and nova_capa != livro["capa"]:
             capa_antiga = livro["capa"]
             livro["capa"] = self._resolver_capa(nova_capa, id_livro)
-            self._remover_capa_personalizada(capa_antiga)
+            # A nova capa pode ter sido copiada sobre o mesmo caminho da antiga
+            # (mesma extensão); nesse caso não há arquivo antigo a remover.
+            if capa_antiga != livro["capa"]:
+                self._remover_capa_personalizada(capa_antiga)
 
         self._salvar()
         return True
@@ -109,17 +119,17 @@ class GerenciadorLivros:
             print(f"Aviso: não foi possível copiar a capa padrão – {erro}")
 
     def _encontrar_capa_padrao_original(self) -> str | None:
-        dir_script = os.path.dirname(os.path.abspath(__file__))
+        dir_raiz = dir_base()
 
         candidatos = []
 
         meipass = getattr(sys, "_MEIPASS", None)
         if meipass:
-            candidatos.append(os.path.join(meipass, "capas", NOME_CAPA_PADRAO))
+            candidatos.append(os.path.join(meipass, NOME_DIR_CAPAS, NOME_CAPA_PADRAO))
 
         candidatos += [
-            os.path.join(dir_script, "capas", NOME_CAPA_PADRAO),
-            os.path.join(dir_script, NOME_CAPA_PADRAO),
+            os.path.join(dir_raiz, NOME_DIR_CAPAS, NOME_CAPA_PADRAO),
+            os.path.join(dir_raiz, NOME_CAPA_PADRAO),
         ]
 
         return next((c for c in candidatos if os.path.exists(c)), None)

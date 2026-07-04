@@ -1,2 +1,2 @@
-customtkinter
-Pillow
+customtkinter~=6.0
+Pillow~=12.3
