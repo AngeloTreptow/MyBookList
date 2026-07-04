@@ -1,7 +1,7 @@
 """Componente visual de um livro na listagem."""
 
 import os
-from typing import Callable
+from collections.abc import Callable
 
 import customtkinter as ctk
 

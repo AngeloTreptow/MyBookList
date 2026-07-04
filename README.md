@@ -11,6 +11,7 @@
 ![Pillow](https://img.shields.io/badge/Pillow-PIL-orange?style=for-the-badge)
 ![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)
 ![Status](https://img.shields.io/badge/status-estável-brightgreen?style=for-the-badge)
+![CI](https://img.shields.io/github/actions/workflow/status/AngeloTreptow/MyBookList/ci.yml?style=for-the-badge&label=CI)
 
 [📥 Baixar .exe](#-como-executar) · [🎨 Ver Temas](#-temas-e-personalização)
 
@@ -62,6 +63,8 @@ O MyBookList não tem um tema: ele tem **quatro personalidades**. Cada uma foi p
 </div>
 
 > *As imagens utilizadas nas capturas de tela são apenas para fins demonstrativos e pertencem aos seus respectivos detentores de direitos autorais.*
+>
+> *O tema "Dracula" é baseado na paleta oficial do [Dracula Theme](https://draculatheme.com) (licença MIT).*
 
 ---
 
@@ -116,7 +119,10 @@ O PyInstaller empacota Python, dependências e assets em um único executável. 
 ```
 MyBookList/
 ├── main.py                        # Ponto de entrada da aplicação
-├── requirements.txt               # Dependências do projeto
+├── requirements.txt               # Dependências da aplicação
+├── requirements-dev.txt           # Dependências de desenvolvimento (pytest, ruff)
+├── pyproject.toml                 # Metadados do pacote e configuração do lint
+├── tests/                         # Testes automatizados (pytest)
 ├── livros.json                    # Banco de dados local (gerado na 1ª execução)
 ├── config_tema.json               # Preferência de tema (gerada na 1ª execução)
 ├── capas/
@@ -184,6 +190,16 @@ python main.py
 **Requisitos:** Python 3.10+
 
 > 💡 **Linux:** o `tkinter` faz parte da biblioteca padrão do Python, mas em algumas distribuições precisa ser instalado à parte: `sudo apt install python3-tk` (Debian/Ubuntu).
+
+#### 🧪 Testes e lint
+
+```bash
+pip install -r requirements-dev.txt
+python -m pytest    # roda a suíte de testes
+ruff check .        # roda o linter
+```
+
+Ambos também rodam automaticamente no GitHub Actions a cada push na `main` e em pull requests.
 
 ---
 

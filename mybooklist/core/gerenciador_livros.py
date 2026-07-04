@@ -157,14 +157,22 @@ class GerenciadorLivros:
                 pass
 
     def _salvar(self) -> None:
-        """Persiste a lista de livros no disco."""
-        with open(self.arquivo_dados, "w", encoding="utf-8") as arquivo:
-            json.dump(self.livros, arquivo, ensure_ascii=False, indent=4)
+        """Persiste a lista de livros no disco.
+
+        Em caso de falha de escrita (disco cheio, sem permissão), avisa e
+        segue: os dados permanecem em memória e a próxima operação tenta
+        salvar novamente.
+        """
+        try:
+            with open(self.arquivo_dados, "w", encoding="utf-8") as arquivo:
+                json.dump(self.livros, arquivo, ensure_ascii=False, indent=4)
+        except OSError as erro:
+            print(f"Aviso: não foi possível salvar os livros – {erro}")
 
     def _carregar(self) -> None:
         """Carrega a lista de livros do disco, ou inicia vazia se o arquivo não existir."""
         try:
-            with open(self.arquivo_dados, "r", encoding="utf-8") as arquivo:
+            with open(self.arquivo_dados, encoding="utf-8") as arquivo:
                 self.livros = json.load(arquivo)
             self._proximo_id = max((livro["id"] for livro in self.livros), default=0)
         except FileNotFoundError:

@@ -1,7 +1,7 @@
 """Utilitários de carregamento de imagens para a interface."""
 
-from PIL import Image
 import customtkinter as ctk
+from PIL import Image
 
 
 def criar_imagem_ctk(caminho: str, tamanho_maximo: tuple[int, int]) -> ctk.CTkImage:
