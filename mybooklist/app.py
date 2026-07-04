@@ -297,6 +297,10 @@ class App(ctk.CTk):
             messagebox.showwarning("Erro", "Capítulos deve ser um número inteiro.")
             return
 
+        if capitulo < 0:
+            messagebox.showwarning("Erro", "Capítulos não pode ser negativo.")
+            return
+
         self.db.cadastrar_livro(nome, autor, capitulo, self.caminho_capa_atual)
         self._limpar_campos_cadastro()
         self.atualizar_lista()
@@ -327,9 +331,13 @@ class App(ctk.CTk):
     def acao_editar(self):
         try:
             id_livro = int(self.entry_editar_id.get().strip())
-            capitulo = int(self.entry_capitulo.get())
+            capitulo = int(self.entry_capitulo.get().strip())
         except ValueError:
             messagebox.showwarning("Erro", "ID e capítulos devem ser números inteiros.")
+            return
+
+        if capitulo < 0:
+            messagebox.showwarning("Erro", "Capítulos não pode ser negativo.")
             return
 
         nome = self.entry_nome.get().strip()
@@ -395,7 +403,7 @@ class App(ctk.CTk):
         if nome:
             self.atualizar_lista(self.db.buscar_por_nome(nome))
         else:
-            messagebox.showwarning("Erro", "Digite o início do nome do livro.")
+            messagebox.showwarning("Erro", "Digite parte do nome do livro.")
 
     def acao_mostrar_todos(self):
         self.atualizar_lista()
@@ -422,7 +430,9 @@ class App(ctk.CTk):
 
         except Exception as e:
             print(f"[AVISO] Erro ao exibir capa: {e}")
-            self.label_capa.configure(text="Erro ao carregar capa", image=None)
+            # image="" limpa a imagem do label; None não é aceito pelo CustomTkinter
+            self.label_capa.configure(text="Erro ao carregar capa", image="")
+            self.label_capa.image = None
 
     # UTILITÁRIOS INTERNOS
 
